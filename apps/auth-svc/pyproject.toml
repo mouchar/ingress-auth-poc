@@ -1,0 +1,34 @@
+[project]
+name = "auth-svc"
+version = "0.1.0"
+description = "Simple authentication service"
+authors = [{ name = "Robert Moucha", email = "robert.moucha@gooddata.com" }]
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.31.0",
+    "pyaml>=24.9.0",
+]
+
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[tool.rye]
+virtual = true
+managed = true
+dev-dependencies = [
+    "pytest>=8.3.3",
+    "httpx>=0.27.2",
+    "pytest-asyncio>=0.24.0",
+    "types-pyyaml>=6.0.12.20240917",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+python_files = ["test_*.py"]
+# addopts = -rsx --tb=short
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+# filterwarnings =
+#   error
+#   ignore:The event_loop fixture provided by pytest-asyncio has been redefined.*:DeprecationWarning
