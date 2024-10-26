@@ -95,7 +95,7 @@ ctlptl delete cluster tilt
 
 ## Testing
 
-Protected service running on `http://example.com` is just a plain httpbin image, so the easiest method is
+Protected service running on `http://www.example.com` is just a plain httpbin image, so the easiest method is
 to use cURL for checking the access is allowed or not. Several test users were already
 added to [acl.yaml](manifests/auth-service/acl.yaml) file, each pemits access from various
 networks.
@@ -113,23 +113,23 @@ Example checks:
 * Invalid token:
 
     ```bash
-    curl  -H 'host:example.com' -H 'authorization: Bearer invalidtoken'  http://172.18.0.2/headers
+    curl  -H 'host:www.example.com' -H 'authorization: Bearer invalidtoken'  http://172.18.0.2/headers
     ```
 
 * Unknown user:
 
     ```bash
-    curl  -H 'host:example.com' -H 'authorization: Bearer dW5rbm93bnVzZXI6Yjpj'  http://172.18.0.2/headers
+    curl  -H 'host:www.example.com' -H 'authorization: Bearer dW5rbm93bnVzZXI6Yjpj'  http://172.18.0.2/headers
     ```
 
 * Valid user, source IP address not permitted:
 
     ```bash
-    curl  -H 'host:example.com' -H 'authorization: Bearer dHdvaXBzOnRva2VuOnNlY3JldA=='  http://172.18.0.2/headers
+    curl  -H 'host:www.example.com' -H 'authorization: Bearer dHdvaXBzOnRva2VuOnNlY3JldA=='  http://172.18.0.2/headers
     ```
 
 * Valid user, permitted IP address:
 
     ```bash
-    curl  -H 'host:example.com' -H 'authorization: Bearer ZG9ja2VyaG9zdHVzZXI6dG9rZW46c2VjcmV0'  http://172.18.0.2/headers
+    curl  -H 'host:www.example.com' -H 'authorization: Bearer ZG9ja2VyaG9zdHVzZXI6dG9rZW46c2VjcmV0'  http://172.18.0.2/headers
     ```

@@ -4,8 +4,8 @@ RUN pip install uv
 WORKDIR /app
 COPY requirements.lock .
 RUN uv pip install --no-cache --system -r requirements.lock
-COPY acl.yaml src ./
+COPY src ./
 
 EXPOSE 8000
 USER nobody
-CMD ["uvicorn", "auth_svc.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "auth_svc.main:app", "--host", "0.0.0.0", "--port", "8000", "--log-config", "log_config.yaml"]

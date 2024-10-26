@@ -44,7 +44,7 @@ spec:
               cpu: "500m"
           volumeMounts:
             - name: auth-config
-              mountPath: /app/acl.yaml
+              mountPath: /app/auth_svc/acl.yaml
               subPath: acl.yaml
       volumes:
         - name: auth-config
