@@ -23,3 +23,19 @@ The authorization server will receive the request with the original request head
 The whole definition how the auth request is assembled can be found [here](https://github.com/kubernetes/ingress-nginx/blob/73622882070fb459f7bf0b63186416be46852043/rootfs/etc/nginx/template/nginx.tmpl#L967-L1084).
 
 For us, it's important `authorization` header (if present), and `x-real-ip`.
+
+```mermaid
+sequenceDiagram
+    actor Client
+    Client ->>IngressCtl: GET /protected (+headers)
+    IngressCtl->>AuthSvc: GET /auth (+headers)
+    alt Access granted
+    AuthSvc->>IngressCtl: HTTP 200 OK (+ authHeaders)
+    IngressCtl->>Backend: GET /protected (+headers +authHeaders)
+    Backend->>IngressCtl: HTTP 200 OK
+    IngressCtl->>Client: HTTP 200 OK
+    else Access denied
+    AuthSvc->>IngressCtl: HTTP 403 Forbidden
+    IngressCtl->>Client: HTTP 403 Forbidden
+end
+```

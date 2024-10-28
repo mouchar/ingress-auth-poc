@@ -36,7 +36,13 @@ spec:
     - token:
         name: dockerhostuser
       cidrs: ["172.18.0.1/32"]
+    # Allow Access to user only via specificly named API token
+    # example bearer token for test is base64('specific:important:secret') = 'c3BlY2lmaWM6aW1wb3J0YW50OnNlY3JldA=='
+    - token:
+        name: specific
+        id: important
+      cidrs: ["1.2.3.4/32"]
     # user jwtuser can access from 6.7.8.0/24
     - jwt:
         sub: jwtuser@example.com
-      cidrs: ["172.18.0.1/32"]
+      cidrs: ["6.7.8.0/24"]
