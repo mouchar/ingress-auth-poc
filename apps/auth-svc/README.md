@@ -10,7 +10,7 @@ for check if request is authorized.
 
 The authorization server will receive the request with the original request headers (including the `authorization` header) and with these headers added:
 
-||Header||Example value||Meaning||
+|Header|Example value|Meaning|
 |-------|--------------|---------|
 |`x-request-id`|`1aeef2c74c0d7905d0d736276c3d99b2`|Randomly generated unique request id|
 |`x-original-url`|`http://example.com/headers`|Original URL as received by ingress controller|
