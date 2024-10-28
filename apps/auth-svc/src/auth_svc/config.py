@@ -2,7 +2,7 @@ from __future__ import annotations
 from enum import Enum
 import ipaddress
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Pattern
 from pydantic import BaseModel, IPvAnyAddress, IPvAnyNetwork
 import yaml
 
@@ -63,7 +63,7 @@ class Rule(BaseModel):
     users: List[TokenUser|JwtUser]
 
 class Spec(BaseModel):
-    protectedPrefixes: List[str]
+    protectedPathMatches: List[Pattern]
     rules: List[Rule]
 
 class ConfigV1(BaseModel):

@@ -98,6 +98,18 @@ def test_auth_unprotected_path(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {"status": "Access allowed for all users"}
 
+# Test if any user can access unprotected path with token from different IP (should return 200)
+def test_auth_unprotected(client: TestClient):
+    token = create_bearer_token("twoips")  # restricted user
+    headers = {
+        "Authorization": token,
+        "x-real-ip": "9.9.9.9",  # not allowed IP
+        "x-original-url": "https://www.example.com/unprotected/path",
+    }
+    response = client.get("/auth", headers=headers)
+    assert response.status_code == 200
+    assert response.json() == {"status": "Access allowed for all users"}
+
 # Test for unprotected host (should return 200)
 def test_auth_unprotected_host(client: TestClient):
     headers = {

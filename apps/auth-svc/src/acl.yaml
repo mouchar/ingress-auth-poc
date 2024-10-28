@@ -1,9 +1,10 @@
 # Example auth config
 apiVersion: 1
 spec:
-  protectedPrefixes:
-  - /api
-  - /headers
+  # Unanchored regex patterns
+  protectedPathMatches:
+  - ^/api
+  - ^/headers$
   rules:
   - host: www.example.com
     users:

@@ -139,8 +139,8 @@ async def auth(request: Request):
 
     # fast path: pass for unprotected paths
     protected = False
-    for rule_path in config.spec.protectedPrefixes:
-        if path.startswith(rule_path):
+    for rule_path in config.spec.protectedPathMatches:
+        if rule_path.match(path):
             protected = True
 
     if not protected:
