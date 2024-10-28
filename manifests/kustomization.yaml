@@ -4,4 +4,4 @@ resources:
 - namespace.yaml
 - ./protected-service
 - ./auth-service
-namespace: example
+- ./metrics-server

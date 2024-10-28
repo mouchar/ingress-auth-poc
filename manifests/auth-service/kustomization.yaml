@@ -8,3 +8,4 @@ configMapGenerator:
 - name: auth-config
   files:
   - acl.yaml
+namespace: example

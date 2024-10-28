@@ -5,3 +5,4 @@ resources:
 - ingress.yaml
 - ingress-noauth.yaml
 - service-example-service.yaml
+namespace: example
